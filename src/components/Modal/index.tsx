@@ -25,7 +25,7 @@ interface Itodo {
   id: string;
   title: string;
   description: string;
-  date: DateObject | null | string;
+  date: string | DateObject | DateObject[] | null;
   priority: string | number;
   priorityColor: string;
   status: string | number;
@@ -39,7 +39,7 @@ export default function Modal() {
     id: '',
     title: '',
     description: '',
-    date: new DateObject({ calendar: persian, locale: persian_fa }),
+    date: new DateObject({ calendar: persian, locale: persian_fa }).format(),
     priority: 'priority',
     priorityColor: '',
     status: 'Status',
@@ -194,7 +194,9 @@ export default function Modal() {
                 calendar={persian}
                 locale={persian_fa}
                 value={todo?.date}
-                onChange={date => setTodo({ ...todo, date: date?.format() })}
+                onChange={date => {
+                  console.log(date?.toString());
+                }}
               ></DatePicker>
             </Box>
             <TextareaAutosize
