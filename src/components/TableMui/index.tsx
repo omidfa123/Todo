@@ -42,8 +42,6 @@ export default function TableMui() {
   const [statusBtn, setStatusBtn] = useState('hidden');
   const [dateBtn, setDateBtn] = useState('hidden');
   const [children, setChildren] = useState(0);
-
-  console.log(state.todos);
   const switchPriority = (p: number | string) => {
     switch (p) {
       case 10:

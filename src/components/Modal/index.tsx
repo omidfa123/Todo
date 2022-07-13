@@ -25,7 +25,7 @@ interface Itodo {
   id: string;
   title: string;
   description: string;
-  date: string | DateObject | DateObject[] | null;
+  date: string | undefined;
   priority: string | number;
   priorityColor: string;
   status: string | number;
@@ -68,7 +68,10 @@ export default function Modal() {
             id: '',
             title: '',
             description: '',
-            date: new DateObject({ calendar: persian, locale: persian_fa }),
+            date: new DateObject({
+              calendar: persian,
+              locale: persian_fa,
+            }).format(),
             priority: 'priority',
             priorityColor: '',
             status: 'Status',
@@ -195,7 +198,7 @@ export default function Modal() {
                 locale={persian_fa}
                 value={todo?.date}
                 onChange={date => {
-                  console.log(date?.toString());
+                  setTodo({ ...todo, date: date?.toString() });
                 }}
               ></DatePicker>
             </Box>
@@ -231,7 +234,7 @@ export default function Modal() {
                   date: new DateObject({
                     calendar: persian,
                     locale: persian_fa,
-                  }),
+                  }).format(),
                   priority: 'priority',
                   priorityColor: '',
                   status: 'Status',
@@ -265,7 +268,7 @@ export default function Modal() {
                     date: new DateObject({
                       calendar: persian,
                       locale: persian_fa,
-                    }),
+                    }).format(),
                     priority: 'priority',
                     priorityColor: '',
                     status: 'Status',
